@@ -9,7 +9,7 @@ export function SiteFooter() {
           href={siteConfig.links.tapTapTap}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-[#08AFC4] transition hover:text-[#11c8df] hover:underline"
+          className="font-semibold !text-[#08AFC4] transition hover:!text-[#11c8df] hover:underline"
         >
           TapTapTap
         </a>

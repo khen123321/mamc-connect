@@ -20,28 +20,56 @@ const iconClasses: Record<QuickAction["tone"], string> = {
 
 interface QuickActionCardProps {
   action: QuickAction;
+  onNotice: (action: QuickAction) => void;
 }
 
-export function QuickActionCard({ action }: QuickActionCardProps) {
+export function QuickActionCard({ action, onNotice }: QuickActionCardProps) {
   const Icon = action.icon;
-
-  return (
-    <a
-      href={action.href}
-      target={action.external ? "_blank" : undefined}
-      rel={action.external ? "noopener noreferrer" : undefined}
-      title={action.description}
-      aria-label={`${action.label}. ${action.description}`}
-      className={`group flex min-h-[4.25rem] flex-col items-center justify-center gap-1.5 rounded-2xl border px-2.5 py-2.5 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-excellence)] ${toneClasses[action.tone]}`}
-    >
+  const label = action.compactLabel ?? action.label;
+  const isNotice = action.behavior === "notice";
+  const className = `group flex min-h-[4.35rem] flex-col items-center justify-center gap-1.5 rounded-2xl border px-2.5 py-2.5 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-excellence)] ${toneClasses[action.tone]}`;
+  const content = (
+    <>
       <span
         className={`flex h-8 w-8 flex-none items-center justify-center rounded-xl ${iconClasses[action.tone]}`}
       >
         <Icon aria-hidden="true" className="h-5 w-5" />
       </span>
       <span className="line-clamp-2 text-[0.86rem] font-semibold leading-tight">
-        {action.compactLabel ?? action.label}
+        {label}
       </span>
-    </a>
+      {isNotice ? (
+        <span className="text-[0.66rem] font-medium leading-none text-[var(--color-muted)]">
+          Coming Soon
+        </span>
+      ) : null}
+    </>
+  );
+
+  if (action.behavior === "link" && action.href) {
+    return (
+      <a
+        href={action.href}
+        target={action.external ? "_blank" : undefined}
+        rel={action.external ? "noopener noreferrer" : undefined}
+        title={action.description}
+        aria-label={`${action.label}. ${action.description}`}
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      title={action.description}
+      aria-label={`${action.label}. ${action.description}`}
+      className={className}
+      onClick={() => onNotice(action)}
+    >
+      {content}
+    </button>
   );
 }

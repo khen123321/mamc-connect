@@ -22,11 +22,16 @@ export const siteConfig = {
     emergencyAvailability: "24/7 Emergency Care",
   },
   links: {
-    mainSite: process.env.NEXT_PUBLIC_MAMC_MAIN_SITE_URL ?? "http://localhost:3000",
-    survey: process.env.NEXT_PUBLIC_MAMC_SURVEY_URL ?? "http://localhost:3001",
-    queue: process.env.NEXT_PUBLIC_MAMC_QUEUE_URL ?? "",
-    maps: process.env.NEXT_PUBLIC_MAMC_MAPS_URL ?? "",
-    facebook: process.env.NEXT_PUBLIC_MAMC_FACEBOOK_URL ?? "",
+    website:
+      process.env.NEXT_PUBLIC_MAMC_WEBSITE_URL ?? "https://mamc.vercel.app/",
+    facebook:
+      process.env.NEXT_PUBLIC_MAMC_FACEBOOK_URL ??
+      "https://www.facebook.com/MadonnaAndChildMC",
+    google:
+      process.env.NEXT_PUBLIC_MAMC_GOOGLE_URL ??
+      "https://search.google.com/local/writereview?placeid=ChIJy_Z9xS7z_zIRYzXdjpQay4Y",
+    survey: process.env.NEXT_PUBLIC_MAMC_SURVEY_URL ?? "",
+    hospitalMap: process.env.NEXT_PUBLIC_MAMC_HOSPITAL_MAP_URL ?? "",
     tapTapTap: "https://www.taptaptap.shop/products",
   },
 } as const;

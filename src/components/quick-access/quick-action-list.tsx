@@ -12,12 +12,12 @@ export function QuickActionList() {
 
   return (
     <>
-      <section aria-labelledby="quick-access-heading" className="mt-3">
+      <section aria-labelledby="quick-access-heading" className="mt-4">
         <h2 id="quick-access-heading" className="sr-only">
           Quick Access
         </h2>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2.5">
           {enabledActions.map((action) => (
             <QuickActionCard
               key={action.id}

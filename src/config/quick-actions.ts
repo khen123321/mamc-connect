@@ -1,14 +1,26 @@
 import {
-  ExternalLink,
   Globe,
   MapPin,
   MapPinned,
   MessageSquareText,
   Wifi,
 } from "lucide-react";
+import { createElement } from "react";
+import type { SVGProps } from "react";
 
 import { siteConfig } from "@/config/site";
 import type { QuickAction } from "@/types/quick-action";
+
+function FacebookIcon(props: SVGProps<SVGSVGElement>) {
+  return createElement(
+    "svg",
+    { viewBox: "0 0 24 24", fill: "none", "aria-hidden": "true", ...props },
+    createElement("path", {
+      d: "M14.25 8.35V6.9c0-.7.48-.86.82-.86h2.1V2.32L14.28 2.3c-3.2 0-4.02 2.39-4.02 3.92v2.13H7.68v3.92h2.58V22h4V12.27h3.05l.4-3.92h-3.46Z",
+      fill: "currentColor",
+    }),
+  );
+}
 
 const createOptionalLinkAction = (
   action: Omit<QuickAction, "behavior" | "enabled" | "href"> & {
@@ -48,7 +60,7 @@ export const quickActions: QuickAction[] = [
     label: "Facebook",
     description: "Open the official MCMC Facebook page.",
     href: siteConfig.links.facebook,
-    icon: ExternalLink,
+    icon: FacebookIcon,
     tone: "standard",
     external: true,
   }),

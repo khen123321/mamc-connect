@@ -2,20 +2,21 @@ import type { QuickAction } from "@/types/quick-action";
 
 const toneClasses: Record<QuickAction["tone"], string> = {
   primary:
-    "border-[rgba(1,94,50,0.18)] bg-[linear-gradient(135deg,#015E32,#0D7E6A)] text-white shadow-[0_10px_24px_rgba(1,94,50,0.16)]",
+    "border-[rgba(1,94,50,0.22)] bg-[linear-gradient(145deg,#015E32,#0D7E6A)] text-white shadow-[0_16px_34px_rgba(1,94,50,0.22)]",
   standard:
-    "border-[rgba(1,94,50,0.1)] bg-white text-[var(--color-charcoal)] shadow-[0_8px_22px_rgba(15,23,42,0.055)]",
+    "border-[rgba(1,94,50,0.12)] bg-white text-[var(--color-charcoal)] shadow-[0_12px_30px_rgba(15,23,42,0.07)]",
   urgent:
-    "border-[rgba(190,18,60,0.13)] bg-white text-[var(--color-charcoal)] shadow-[0_8px_22px_rgba(15,23,42,0.055)]",
+    "border-[rgba(190,18,60,0.14)] bg-white text-[var(--color-charcoal)] shadow-[0_12px_30px_rgba(15,23,42,0.07)]",
   muted:
-    "border-[rgba(100,116,139,0.16)] bg-white text-[var(--color-charcoal)] shadow-[0_8px_22px_rgba(15,23,42,0.05)]",
+    "border-[rgba(100,116,139,0.16)] bg-white text-[var(--color-charcoal)] shadow-[0_12px_30px_rgba(15,23,42,0.06)]",
 };
 
 const iconClasses: Record<QuickAction["tone"], string> = {
-  primary: "bg-white/18 text-white",
-  standard: "bg-[rgba(13,126,106,0.1)] text-[var(--color-excellence)]",
-  urgent: "bg-rose-50 text-rose-700",
-  muted: "bg-slate-100 text-slate-600",
+  primary: "bg-white/20 text-white ring-1 ring-white/15",
+  standard:
+    "bg-[rgba(13,126,106,0.1)] text-[var(--color-excellence)] ring-1 ring-[rgba(13,126,106,0.08)]",
+  urgent: "bg-rose-50 text-rose-700 ring-1 ring-rose-100",
+  muted: "bg-slate-100 text-slate-600 ring-1 ring-slate-200/70",
 };
 
 interface QuickActionCardProps {
@@ -27,19 +28,19 @@ export function QuickActionCard({ action, onNotice }: QuickActionCardProps) {
   const Icon = action.icon;
   const label = action.compactLabel ?? action.label;
   const isNotice = action.behavior === "notice";
-  const className = `group flex min-h-[4.35rem] flex-col items-center justify-center gap-1.5 rounded-2xl border px-2.5 py-2.5 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-excellence)] ${toneClasses[action.tone]}`;
+  const className = `group flex min-h-[5.55rem] flex-col items-center justify-center gap-2.5 rounded-[1.35rem] border px-3 py-4 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-excellence)] ${toneClasses[action.tone]}`;
   const content = (
     <>
       <span
-        className={`flex h-8 w-8 flex-none items-center justify-center rounded-xl ${iconClasses[action.tone]}`}
+        className={`flex h-10 w-10 flex-none items-center justify-center rounded-2xl ${iconClasses[action.tone]}`}
       >
-        <Icon aria-hidden="true" className="h-5 w-5" />
+        <Icon aria-hidden="true" className="h-[1.35rem] w-[1.35rem]" />
       </span>
-      <span className="line-clamp-2 text-[0.86rem] font-semibold leading-tight">
+      <span className="line-clamp-2 max-w-[8.25rem] text-[0.9rem] font-semibold leading-snug">
         {label}
       </span>
       {isNotice ? (
-        <span className="text-[0.66rem] font-medium leading-none text-[var(--color-muted)]">
+        <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[0.66rem] font-semibold leading-none text-[var(--color-muted)]">
           Coming Soon
         </span>
       ) : null}

@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
 
 export type QuickActionTone = "primary" | "standard" | "urgent" | "muted";
 export type QuickActionBehavior = "link" | "notice";
@@ -9,7 +9,7 @@ export interface QuickAction {
   compactLabel?: string;
   description: string;
   href?: string;
-  icon: LucideIcon;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   tone: QuickActionTone;
   behavior: QuickActionBehavior;
   external?: boolean;

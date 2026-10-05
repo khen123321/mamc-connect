@@ -30,7 +30,9 @@ export const siteConfig = {
     google:
       process.env.NEXT_PUBLIC_MAMC_GOOGLE_URL ??
       "https://search.google.com/local/writereview?placeid=ChIJy_Z9xS7z_zIRYzXdjpQay4Y",
-    survey: process.env.NEXT_PUBLIC_MAMC_SURVEY_URL ?? "",
+    survey:
+      process.env.NEXT_PUBLIC_MAMC_SURVEY_URL ??
+      "https://mamc-surveyform.vercel.app/",
     hospitalMap: process.env.NEXT_PUBLIC_MAMC_HOSPITAL_MAP_URL ?? "",
     tapTapTap: "https://www.taptaptap.shop/products",
   },
